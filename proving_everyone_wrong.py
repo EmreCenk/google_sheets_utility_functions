@@ -1,5 +1,4 @@
 
-# def get_decimal_difference(num1, num2):
 
 	
 def method1(num1, num2):
@@ -15,6 +14,43 @@ def method2(num1, num2):
 	return b
 
 def prove_everyone_wrong():
+	"""
+	A simulation I wrote to prove that there could, in theory, be a decimal difference depending on how we multiply very big and very small floats.
+	The issue came up when a rounding/floating point inaccuracy resulted in a gigantic difference when looking model predictions in my MDM4UI (Data Management) Course. 
+	
+	THESIS
+	With very large and very small decimals, there can theoretically be difference when the order of operation is changed during multiplication.
+	
+	In other words:
+	Let a, b ∈ Q.
+	We consider the multiplying in the following orders: (a*a)*b and a*(a*b). In theory, this order
+	difference could create different outcomes at extreme a and b values. Such an example is when:
+	1) There is an extremely large a value
+	2) There is an extremely small b value with very long decimal digits.
+	
+	
+	The reason for this is that when a is an extremely big number, it becomes very difficult to compute a*a with high precision. 
+	The same goes for when b is an extremely small value with very long decimals. 
+	
+	When you compute (a*a), then multiply that with b, you end up multiplying a gigantic number with an extremely small number with lots of decimals.
+	In these circumstances, it becomes very difficult to maintain floating point accuracy. 
+	
+	However, if we first find (a*b), then multiply that number with a, what we have is a relatively normal number, multiplied with a relatively big number.
+	With these circumstances, it becomes much easier to maintain floating point accuracy. 
+	
+	To prove this, I wrote this simulation where I would test this theory by generating extreme examples of the concept/theory given above. 
+	
+	
+	RESULTS
+	After simulating thousands of combinations and comparing the multiplication methods, the biggest difference I found between the two methods was a difference of ~0.01 .
+	It does not seem very significant at first, but when dealing with very large numbers, this difference becomes crucial.
+	
+	Overall, this phenomena does make a difference at extreme examples, however does not effect many scenarios in practice. 
+	The only potential application I can see is cryptography. However, many specialized libraries have already been developed for such 
+	use cases. 
+	
+	In conclusion, I am happy to have proved my point.
+	"""
 	print("\n"*100)
 
 	limit = 1000
